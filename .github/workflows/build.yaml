@@ -27,6 +27,16 @@ jobs:
         run: make build-cross-x86_64-unknown-linux-gnu
       - name: build static arm
         run: make build-cross-aarch64-unknown-linux-gnu
+      - name: package release assets
+        run: |
+          mkdir _dist
+          cp target/release/containerd-shim-*-v1 _dist/
+          cd _dist
+          tar czf containerd-wasm-shims-v1.tar.gz containerd-shim-*-v1
+      - uses: actions/upload-artifact@v3
+        with:
+          name: builds.tgz
+          path: containerd-shim-*-v1
       - name: build k3d demo
         run: make build-image
         working-directory: ./deployments/k3d
