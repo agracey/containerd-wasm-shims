@@ -22,6 +22,10 @@ jobs:
             ${{ runner.os }}-cargo-
       - name: build
         run: make
+      - name: build static x86
+        run: make build-cross-x86_64-unknown-linux-gnu
+      - name: build static arm
+        run: make build-cross-aarch64-unknown-linux-gnu
       - name: build k3d demo
         run: make build-image
         working-directory: ./deployments/k3d
