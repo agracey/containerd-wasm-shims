@@ -36,7 +36,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: builds.tgz
-          path: containerd-shim-*-v1
+          path: _dist/containerd-wasm-shims-v1.tar.gz
       - name: build k3d demo
         run: make build-image
         working-directory: ./deployments/k3d
